@@ -1,5 +1,6 @@
 import { io, type Socket } from "socket.io-client";
 import { create } from "zustand";
+import { env } from "../utils/API_ENV";
 
 export interface Message {
   _id: string;
@@ -57,7 +58,9 @@ const useSocketStore = create<SocketState>((set, get) => ({
   connectSocket: (userId: string) => {
     if (get().socket) return;
 
-    const socket = io("http://localhost:5002", {
+    const socket = io(env === "production"
+        ? "https://37309f6697fe.ngrok-free.app"
+        : "http://localhost:5002", {
       withCredentials: true,
     });
 
