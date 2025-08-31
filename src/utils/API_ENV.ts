@@ -7,4 +7,4 @@ if (env === "development") {
   api = "https://37309f6697fe.ngrok-free.app/api/v1";
 }
 
-export { api };
+export { api, env };
